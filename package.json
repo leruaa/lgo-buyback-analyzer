@@ -15,11 +15,14 @@
     "d3": "^5.15.1",
     "html-webpack-plugin": "^4.3.0",
     "jquery": "^3.4.1",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "papaparse": "^5.2.0",
+    "vercel": "^19.2.0"
   },
   "scripts": {
     "build": "webpack",
     "buildProd": "NODE_ENV='production' webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "startVercel": "vercel dev"
   }
 }
