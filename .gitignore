@@ -1,5 +1,7 @@
 .DS_Store
 node_modules
-public/bundle.*
+public/index.html
+public/main.js
 .env
 .env.build
+.vercel
