@@ -21,9 +21,12 @@ module.exports = {
         contentBase: './public',
         writeToDisk: true
     },
-
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                loader: 'ify-loader'
+            },
             {
                 test: /\.(a?png|svg)$/,
                 use: [
@@ -50,6 +53,30 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            outputPath: 'css'
+                        }
+                    },
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: [
+                                require('tailwindcss'),
+                                require('postcss-nesting'),
+                                require('autoprefixer')
+                            ]
+                        }
+                    },
+                    'less-loader'
+                ]
             }
         ]
     },
@@ -58,7 +85,7 @@ module.exports = {
             template: 'src/index.ejs'
         }),
         new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['**/*', "!CNAME", "!data/**"]
+            cleanOnceBeforeBuildPatterns: ['**/*', "!CNAME", "!data/**", "!api/**"]
         }),
         new OptimizeCssAssetsPlugin(),
         new MiniCssExtractPlugin({

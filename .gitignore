@@ -1,7 +1,9 @@
 .DS_Store
 node_modules
+public/api
 public/index.html
 public/main.js
+public/main.css
 .env
 .env.build
 .vercel

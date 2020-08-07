@@ -6,10 +6,39 @@
 </head>
 
 <body>
-    <div id="left-pane">
+    <div id="loading" class="fixed flex h-screen w-screen bg-white">
+        <div class="m-auto">
+            <h3>Loading...</h3>
+        </div>
     </div>
-    <div class="flex flex-row">
-        <div id="container" class="flex-1"></div>
+    <div class="bg-gray-100	 shadow p-2">
+        <div class="container mx-auto">
+            <h1 class="text-4xl">LGO buyback analyzer</h1>
+        </div>
+    </div>
+    <div class="container mx-auto p-2">
+        <h2 class="text-2xl">Daily buyback chart</h2>
+        <p class="text-gray-700">Buyback amount in USD</p>
+        <div id="days-graph" class="w-full"></div>
+        <h2 class="text-2xl">Buyback details</h2>
+        <p class="text-gray-700">Data extracted from the <a
+                href="https://storage.googleapis.com/lgo-buyback-prod/buyback.csv">CSV file</a> provided by LGO</p>
+        <table id="buyback-data" class="w-full text-sm">
+            <thead>
+                <tr>
+                    <th class="border px-2 py-1">Date</th>
+                    <th class="border px-2 py-1">Order Id</th>
+                    <th class="border px-2 py-1">Batch Id</th>
+                    <th class="border px-2 py-1">Type</th>
+                    <th class="border px-2 py-1">Price</th>
+                    <th class="border px-2 py-1">Quantity filled</th>
+                    <th class="border px-2 py-1">USD amount filled</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
     </div>
 </body>
 
