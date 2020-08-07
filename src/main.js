@@ -99,7 +99,7 @@ Papa.parse(hostname + "/api/buyback", {
       }
     }
 
-    Plotly.newPlot('days-graph', [data], layout, { displayModeBar: false });
+    Plotly.newPlot('days-graph', [data], layout, { displayModeBar: false, responsive: true });
 
     d3.select("#loading").remove();
   }
