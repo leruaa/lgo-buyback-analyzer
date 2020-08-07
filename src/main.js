@@ -4,13 +4,15 @@ import Papa from 'papaparse'
 import * as d3 from "d3";
 import Plotly from 'plotly.js-dist'
 
-import { DateTime } from 'luxon';
+import { DateTime, Settings } from 'luxon';
 import BigNumber from "bignumber.js"
 
 let hostname = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
 
 let tbody = d3.select("#buyback-data tbody");
 let buybacks = [];
+
+Settings.defaultZoneName = "utc";
 
 Papa.parse(hostname + "/api/buyback", {
   header: true,
