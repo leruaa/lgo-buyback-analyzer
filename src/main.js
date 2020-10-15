@@ -14,6 +14,27 @@ let buybacks = [];
 
 Settings.defaultZoneName = "utc";
 
+BigNumber.config({
+  FORMAT: {
+    // string to prepend
+    prefix: '',
+    // decimal separator
+    decimalSeparator: '.',
+    // grouping separator of the integer part
+    groupSeparator: ',',
+    // primary grouping size of the integer part
+    groupSize: 3,
+    // secondary grouping size of the integer part
+    secondaryGroupSize: 0,
+    // grouping separator of the fraction part
+    fractionGroupSeparator: ' ',
+    // grouping size of the fraction part
+    fractionGroupSize: 0,
+    // string to append
+    suffix: ''
+  }
+});
+
 Papa.parse(hostname + "/api/buyback", {
   header: true,
   worker: true,
@@ -79,6 +100,16 @@ Papa.parse(hostname + "/api/buyback", {
       .key(d => d.date.toISODate())
       .rollup(v => BigNumber.sum(...v.map(d => d.usdAmountFilled)).toNumber())
       .entries(buybacks);
+
+    let totalAmount = BigNumber.sum(...buybacks.map(d => d.usdAmountFilled));
+
+    d3.select("#total").text(totalAmount.toFormat(0) + ' USD');
+
+    let yesterday = DateTime.local().minus({ days: 1 });
+
+    let totalAmountLast24h = BigNumber.sum(...buybacks.filter(d => d.date > yesterday).map(d => d.usdAmountFilled));
+
+    d3.select("#total-last24h").text(totalAmountLast24h.toFormat(0) + ' USD');
 
     let data = {
       x: buybacksByDay.map(d => d.key),
