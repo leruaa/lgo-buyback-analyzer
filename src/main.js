@@ -12,8 +12,6 @@ let hostname = location.protocol + '//' + location.hostname + (location.port ? '
 let tbody = d3.select("#buyback-data tbody");
 let buybacks = [];
 
-Settings.defaultZoneName = "utc";
-
 BigNumber.config({
   FORMAT: {
     // string to prepend
@@ -61,7 +59,7 @@ Papa.parse(hostname + "/api/buyback", {
     tr
       .append("td")
       .attr("class", "border px-2 py-1")
-      .text(d => d.date.toLocaleString(DateTime.DATETIME_FULL));
+      .text(d => d.date.toLocaleString(DateTime.DATETIME_SHORT));
 
     tr
       .append("td")
